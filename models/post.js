@@ -50,10 +50,9 @@ const postSchema = new mongoose.Schema(
   },
 );
 
-postSchema.pre("validate", function (next) {
-  if (!this.content && !this.photo.url && !this.video.url) {
-    this.invalidate("content", "Content is required");
-  }
-  next();
-});
+postSchema.path("content").validate(function () {
+  return (
+    this.content?.trim() || this.photo?.url?.trim() || this.video?.url?.trim()
+  );
+}, "Post must contain content, photo, or video");
 export default mongoose.model("Post", postSchema);
