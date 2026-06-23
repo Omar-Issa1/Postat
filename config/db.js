@@ -11,7 +11,3 @@ const connectDB = async () => {
 };
 
 export default connectDB;
-
-
- "editor.suggest.snippetsPreventQuickSuggestions": true,
-  "emmet.showSuggestionsAsSnippets": true,
